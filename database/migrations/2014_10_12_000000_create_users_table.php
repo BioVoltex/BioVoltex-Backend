@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->enum('role',['owner','buyer'])->default('buyer');
             $table->string('otp_code')->nullable();
+            $table->dateTime('expire_at')->nullable();
             $table->string('image')->default('https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
