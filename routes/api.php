@@ -1,22 +1,19 @@
 <?php
 
-use App\Http\Controllers\Registration\QrCodeController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\Chat\ChatController;
+use App\Http\Controllers\API\HelpSupportController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/create-chat/{id}', [ChatController::class, 'create']);
+    Route::post('/send-message', [ChatController::class, 'sendMessage']);
+    Route::get('/show-chat-messages', [ChatController::class, 'showMessages']);
+    Route::get('/show-chats', [ChatController::class, 'showChats']);
+    Route::get('/chats/search', [ChatController::class, 'search']);
+    Route::post('/help-support', [HelpSupportController::class,'sendEmail'])->name('help-support.send');
+    // Route::get('/send-notification', [ChatController::class, 'sendMessageNotification']);
+
 });
-
-Route::get('create_qrCode',[QrCodeController::class,'create']);

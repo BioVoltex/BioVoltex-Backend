@@ -15,7 +15,6 @@ class Chat extends Model
     protected $guarded = [];
 
 
-    //Every chat contain many messages
     public function messages() : HasMany
     {
         return $this->hasMany(Message::class);

@@ -6,10 +6,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\ChatSeeder;
-use Database\Seeders\UserSeeder;
-use Database\Seeders\DeviceSeeder;
 use Database\Seeders\MessageSeeder;
-use Database\Seeders\AnaerobicDigesterSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,9 +20,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ChatSeeder::class,
             MessageSeeder::class,
-            FertilizerSeeder::class,
             AnaerobicDigesterSeeder::class,
             DeviceSeeder::class,
+            FertilizerSeeder::class,
         ]);
     }
 }

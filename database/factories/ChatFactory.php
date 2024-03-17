@@ -6,11 +6,10 @@ use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Chat>
- */
 class ChatFactory extends Factory
 {
+
+
     protected $model = Chat::class;
 
     public function definition(): array
