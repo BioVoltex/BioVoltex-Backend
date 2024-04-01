@@ -5,6 +5,14 @@ use App\Http\Controllers\API\Chat\ChatController;
 use App\Http\Controllers\API\HelpSupportController;
 
 
+// Registration route
+Route::post('/register', [AuthController::class, 'register']);
+
+// Login route
+Route::post('/login', [AuthController::class, 'login']);
+
+// Logout route
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
