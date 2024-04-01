@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Chat\ChatController;
 use App\Http\Controllers\API\HelpSupportController;
-
+use App\Http\Controllers\Auth\AuthController;
 
 // Registration route
 Route::post('/register', [AuthController::class, 'register']);
