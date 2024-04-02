@@ -8,11 +8,13 @@ use App\Interfaces\QRCodes\QRCodeRepositoryInterface;
 
 class QRCodeRepository implements QRCodeRepositoryInterface
 {
+    //generate qr code for every device
     public function generateQrCode($data)
     {
         return QrCode::size(256)->generate($data);
     }
 
+    //store qr image in database
     public function storeQrCode($qrCodeSvg)
     {
         $qrCodePath = 'images/qrcode' . time() . '_' . uniqid() . '.svg';
