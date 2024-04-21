@@ -1,8 +1,6 @@
 <?php
 namespace App\Interfaces\Chats;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\MessageRequest;
 
 
 interface ChatRepositoryInterface

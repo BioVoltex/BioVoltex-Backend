@@ -42,7 +42,7 @@ class ChatController extends Controller
         $message = Message::find($message->id);
 
         // Send the notification
-        $receiver_name->notify(new NewMessage($message->sender_name, $message->content));
+        //$receiver_name->notify(new NewMessage($message->sender_name, $message->content));
 
         return response([
             'message' => $message
