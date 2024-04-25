@@ -69,8 +69,8 @@ class AuthController extends Controller
         $token = $user->createToken('user_token')->plainTextToken;
 
         // Generate two-factor authentication code
-        // $user->generateTwoFactorCode();
-        // $user->notify(new SendTwoFactorCode());
+         $user->generateTwoFactorCode();
+        
 
         // Return a success response with the token and user details
         return response()->json([
@@ -90,5 +90,27 @@ class AuthController extends Controller
             'status' => true,
             'message' => 'Logged out successfully',
         ], 200);
+    }
+
+    public function verifyOTP(Request $request){
+        $user = User::where('email',$request->email)->first();
+        $request->validate([
+            'verfication_code' => 'required',
+        ]);
+
+        if ($request->verfication_code == $user->verfication_code) {
+            return response(
+            [
+                'status' => true,
+                'message' => 'Correct verification code',
+            ]);
+        }
+        else
+        {
+            return response([
+                'status' => false,
+                'message' => 'Your verification code is incorrect',
+            ]);
+        }
     }
 }

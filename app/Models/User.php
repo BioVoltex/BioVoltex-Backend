@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\SendTwoFactorCode;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    protected $table = 'users';
+    protected $guarded = [];
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address',
+        'otp_code',
+        'expire_at',
+        'image',
+        'role',
     ];
 
     /**
@@ -40,6 +48,18 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'expires_at' => 'datetime'
+
+
     ];
+
+    public function generateTwoFactorCode(): void
+    {
+        $this->timestamps = false;
+        $this->otp_code = rand(1000, 9999);
+        $this->expire_at = now()->addMinutes(10);
+        $this->save();
+    }
+
+
 }

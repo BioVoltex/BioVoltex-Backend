@@ -17,6 +17,21 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 
+
+// Reset password
+Route::middleware('auth:api')->group(function () {
+    Route::post('reset-password', [ResetPasswordController::class, 'resetPassword']);
+});
+
+// Create password
+Route::post('create-password', [PasswordController::class, 'createPassword']);
+
+// Updating email
+Route::put('user/email', [UserController::class, 'updateEmail']);
+
+//Switching devices
+Route::post('switch-device', [DeviceController::class, 'switchDevice']);
+
 Route::middleware('auth:sanctum')->group(function () {
 
     //-----------------------------------------------Chat routes------------------------------------------------//
